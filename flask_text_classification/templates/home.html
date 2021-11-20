@@ -1,0 +1,60 @@
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title> Text Classification Demo</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="starter-template">
+                <h1>Text Classification Demo</h1>
+                <h3>Try to write any text to classify</h3>
+                <font color="red" size="3">@By Universidad ESAN - 2019</font>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <header>              
+            <div class="container">
+                <span>
+                    {% if text_original %}
+                        <p>Enter your text here</p>
+                        <form name="upload_text" action="/predict" onsubmit="return validationForm()" method="post">
+                            <textarea name="text" rows="4" cols="50">{{text_original}}</textarea>
+                            <br/>
+                            <br/>
+                            <input type="submit" class="btn btn-primary" value="Predict">
+                            <input style="background-color: rgb(245, 167, 31); border: rgb(245, 167, 31)" class="btn btn-primary" onclick="window.location.href = '/';" value="Clear" size="5"> 
+                        </form> 
+
+                        <br/>
+                        <br/>
+                        <p>This text is:</p>
+                        <textarea style="background-color: #87CEEB;" name="result" rows="1" cols="20">{{pred}}</textarea>
+
+                    {% else %}
+                        <p>Enter your text here</p>
+                        <form name="upload_text" action="/predict" onsubmit="return validationForm()" method="post">
+                            <textarea name="text" rows="4" cols="50"></textarea>
+                            <br/>
+                            <br/>
+                            <input type="submit" class="btn btn-primary" value="Predict">
+                            <input style="background-color: rgb(245, 167, 31); border: rgb(245, 167, 31)" class="btn btn-primary" onclick="window.location.href = '/';" value="Clear" size="5"> 
+                        </form> 
+                    {% endif %}
+                </span>            
+            </div> 
+        </header>   
+
+        <script>
+            function validationForm(){
+                var x =  document.forms["upload_text"]["text"].value;
+                if (x == ""){
+                    alert("Put a text in the field");
+                    return false;
+                }
+            }
+        </script>
+    </body>
+</html>
